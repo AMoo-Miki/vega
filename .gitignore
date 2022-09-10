@@ -10,3 +10,4 @@
 /packages/*/build
 /packages/*/build-es5
 /packages/*/LICENSE
+*.iml
