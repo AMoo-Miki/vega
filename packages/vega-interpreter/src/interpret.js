@@ -8,9 +8,10 @@ const DisallowedMethods = new Set([
   Function,
   eval,
   setTimeout,
-  setInterval,
-  setImmediate,
+  setInterval
 ]);
+
+if (typeof setImmediate === 'function') DisallowedMethods.add(setImmediate);
 
 const Visitors = {
   Literal: ($, n) => n.value,
@@ -31,6 +32,7 @@ const Visitors = {
     const p = $(n.property);
     if (d) $.memberDepth -= 1;
     if (DisallowedMethods.has(o[p])) {
+      // eslint-disable-next-line no-console
       console.error(`Prevented interpretation of member "${p}" which could lead to insecure code execution`);
       return;
     }
@@ -72,6 +74,7 @@ const Visitors = {
     const k = $(p.key);
     $.memberDepth -= 1;
     if (DisallowedMethods.has($(p.value))) {
+      // eslint-disable-next-line no-console
       console.error(`Prevented interpretation of property "${k}" which could lead to insecure code execution`);
     } else {
       o[k] = $(p.value);

@@ -1,6 +1,6 @@
 {
   "name": "@amoo-miki/vega-forced-csp-compliant-interpreter",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Forced CSP-compliant interpreter for Vega expressions.",
   "keywords": [
     "vega",
